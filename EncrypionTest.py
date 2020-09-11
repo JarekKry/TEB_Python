@@ -12,7 +12,7 @@ encText1 = encryptor1.Encrypt(text)
 encText2 = encryptor2.Encrypt(text)
 
 print("Text to encrypt:",text)
-print("Encryptor1 pass:",pass1,"Encrypted: ",encText1)
+print("Encryptor1 pass:",pass1,"Encrypted:",encText1)
 print("Encryptor2 pass:",pass2,"Encrypted:",encText2)
 
 print("Encryptor1 with Encryptor1 input:",encryptor1.Decrypt(encText1))
