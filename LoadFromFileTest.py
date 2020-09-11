@@ -1,16 +1,19 @@
+from SimplePasswordManagerCore.SimpleEncryption import SimpleEncryptor
 from SimplePasswordManagerCore.SimpleDB import SimpleDB
 
 DB = SimpleDB("nameᅧadminᅥloginᅧadminᅥpasswordᅧadmin123ᅥurlᅧurlasdᅤnameᅧtestᅥloginᅧtestloginᅥpasswordᅧtestpasswordᅥurlᅧtesturl")
-#DB = SimpleDB("")
-
-DB.AddEntry("nameᅧadminᅥloginᅧadminᅥpasswordᅧadmin123ᅥurlᅧurlasd")
-
-DB.AddEntry("nameᅧtestᅥloginᅧtestloginᅥpasswordᅧtestpasswordᅥurlᅧtesturl")
-
-
 print(DB.isGood)
 
-print('Entries count:',len(DB.entries))
+encryptor = SimpleEncryptor('test')
+
+#file = open('testDB.txt','w')
+#file.write(encryptor.Encrypt(DB.GetRawDBData()))
+#file.close()
+
+file = open('testDB.txt','r')
+
+DB = SimpleDB(encryptor.Decrypt(file.readline()))
+print(DB.isGood)
 
 for x in DB.entries:
     print('-----------------------')
@@ -18,6 +21,5 @@ for x in DB.entries:
     print(x.GetParmValue('login'))
     print(x.GetParmValue('password'))
     print(x.GetParmValue('url'))
-    
 
-print(DB.GetRawDBData())
+file.close()

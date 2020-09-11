@@ -3,13 +3,13 @@
 # ᅥ - separate parms in entry
 # ᅧ - separate value name and value
 
-class PasswordDB: 
+class SimpleDB: 
 
     isGood = False
-    entries = []
-
+    
     def __init__(self,DB_Data):
-                
+
+        self.entries = []      
         try:
             entriesRaw = DB_Data.split('ᅤ')
 
@@ -40,8 +40,11 @@ class PasswordDB:
 
             for i in range(len(self.entries[x].parms)):
 
-                output += self.entries[x].parms[i].Name + 'ᅧ' + self.entries[x].parms[i].Value + 'ᅥ'
-            output += 'ᅤ'
+                output += self.entries[x].parms[i].Name + 'ᅧ' + self.entries[x].parms[i].Value
+                
+                if i+1 != len(self.entries[x].parms): output += 'ᅥ'
+
+            if x+1 != len(self.entries):output += 'ᅤ'
 
         return output
 
@@ -49,10 +52,11 @@ class PasswordDB:
 class Entry:
 
     isGood = False
-    parms = []
+    
 
     def __init__(self,entryString): #create db entry 
 
+        self.parms = []
         try:
             parameters = entryString.split('ᅥ')
 
