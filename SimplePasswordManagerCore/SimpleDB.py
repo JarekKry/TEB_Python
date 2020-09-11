@@ -28,10 +28,13 @@ class SimpleDB:
         if(tempEntry.isGood): self.entries.append(tempEntry)
 
         return tempEntry.isGood
-   
-    def RemoveEntry(self,Index):
+    def EditEntry(self,index,valueName,value):
 
-        del(self.entries[Index])
+        self.entries[index].SetParmValue(valueName,value)
+
+    def RemoveEntry(self,index):
+
+        del(self.entries[index])
     
     def GetRawDBData(self):
         output=''
