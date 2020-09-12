@@ -168,12 +168,18 @@ class Ui_MainWindow(object):
         self.clearClipboardThread.start()
 ############# this create background job ( i spent 2 hours figuring out how to make this ;-; )
 
+        self.DataBase = None
+        self.Encryptor = None
+
+#########################################
         self.clipboardTimeLeft = 0
         self.clipboardNeedToClear = False
 
         self.LoginCopyButton.clicked.connect(self.copyLogin)
         self.PasswordCopyButton.clicked.connect(self.copyPassword)
         self.OpenUrlButton.clicked.connect(self.openUrl)
+        self.actionOtw_rz_2.triggered.connect(self.OpenFile)
+        self.comboBox.currentTextChanged.connect(self.DisplayDatabaseEntry)
 
     def reccuring_clearClipboardJob(self):
 
@@ -184,8 +190,9 @@ class Ui_MainWindow(object):
         if self.clipboardTimeLeft == 0 and self.clipboardNeedToClear: 
             self.clipboardNeedToClear = False
             QtGui.QGuiApplication.clipboard().setText('')  
-            
 
+######################################### Button functions
+   
     def copyLogin(self):
         
         self.clipboardNeedToClear = True
@@ -199,7 +206,75 @@ class Ui_MainWindow(object):
 
     def openUrl(self):
         webbrowser.open(self.UrlBox.text())
+
+######################################### File functions
+
+    def OpenFile(self): #try to open database file
         
+        filepath = self.GetFileDialog()
+        if filepath == False: return
+
+        password = self.GetPasswordDialog()
+        if password == False: return
+
+
+        file = open(filepath,'r')
+        self.Encryptor = SimpleEncryptor(password)
+        self.DataBase = SimpleDB(self.Encryptor.Decrypt(file.readline()))
+
+        if not self.DataBase.isGood:
+
+            self.DisplayMsg('Błąd wczytywania bazy danych','Błąd')
+            self.DataBase = None
+            self.Encryptor = None
+
+        else:
+
+            self.DisplayMsg('Wczytano baze danych',' ')
+            self.DisplayDatabaseList()
+            self.DisplayDatabaseEntry()
+######################################### Display functions
+
+    def DisplayDatabaseList(self):
+        if not self.DataBase.isGood: return
+
+        for x in self.DataBase.entries:
+            self.comboBox.addItem(x.GetParmValue('name'))
+
+       
+    def DisplayDatabaseEntry(self):
+
+        index = self.comboBox.currentIndex()
+
+        self.NameBox.setText(self.DataBase.entries[index].GetParmValue('name'))
+        self.LoginBox.setText(self.DataBase.entries[index].GetParmValue('login'))
+        self.PasswordBox.setText(self.DataBase.entries[index].GetParmValue('password'))
+        self.UrlBox.setText(self.DataBase.entries[index].GetParmValue('url'))
+
+######################################### Dialog functions
+
+    def GetFileDialog(self): #return file path or False
+
+        dlg = QtWidgets.QFileDialog()
+        dlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
+        
+        if dlg.exec_():
+            return dlg.selectedFiles()[0]
+        else: return False
+
+    def GetPasswordDialog(self): #return password or False
+
+        text, ok = QtWidgets.QInputDialog.getText(None, " ", "Hasło:", QtWidgets.QLineEdit.Password)
+
+        if ok: return str(text)
+        else: return False
+
+    def DisplayMsg(self,text,title):
+        msg=QtWidgets.QMessageBox()
+        msg.setText(text)
+        msg.setWindowTitle(title)
+        msg.exec()
+#########################################             
 
 if __name__ == "__main__":
     import sys
