@@ -1,9 +1,7 @@
 from hashlib import sha512,pbkdf2_hmac
 
 class SimpleEncryptor: #My own simple encryption algoritm
-    Key = ''
-    rKey = '' # reversed key
-    KeySum = 0
+  
     separator = '-'
 
     def __init__(self,Key):
@@ -16,6 +14,7 @@ class SimpleEncryptor: #My own simple encryption algoritm
         #self.Key = Key                 #Alternative without hashing
         #self.rKey = self.Key[::-1] 
 
+        self.KeySum = 0
         for x in range(len(Key)): 
             ke = ord(self.Key[x])
             rk = ord(self.rKey[x])

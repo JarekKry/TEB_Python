@@ -4,10 +4,10 @@
 # ᅧ - separate value name and value
 
 class SimpleDB: 
-
-    isGood = False
-    
+   
     def __init__(self,DB_Data):
+
+        self.isGood = False
 
         self.entries = []      
         try:
@@ -53,13 +53,12 @@ class SimpleDB:
 
     
 class Entry:
-
-    isGood = False
-    
-
+       
     def __init__(self,entryString): #create db entry 
 
+        self.isGood = False
         self.parms = []
+        
         try:
             parameters = entryString.split('ᅥ')
 
