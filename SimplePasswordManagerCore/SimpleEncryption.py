@@ -11,10 +11,10 @@ class SimpleEncryptor: #My own simple encryption algoritm
         salt = sha512(bytes(Key,"UTF-8")).digest()  
                     
         self.Key = pbkdf2_hmac('sha512',bytes(Key,'UTF-8'),salt,100000).hex() # it work without this but i dont want to store plain text in memory
+        self.rKey = pbkdf2_hmac('sha512',bytes(Key[::-1],'UTF-8'),salt,100000).hex()
 
-        #self.Key = Key #Alternative without hashing
-
-        self.rKey = self.Key[::-1] 
+        #self.Key = Key                 #Alternative without hashing
+        #self.rKey = self.Key[::-1] 
 
         for x in range(len(Key)): 
             ke = ord(self.Key[x])
