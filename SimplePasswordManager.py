@@ -182,6 +182,7 @@ class Ui_MainWindow(object):
         self.OpenUrlButton.clicked.connect(self.openUrl)
         self.SaveEntryButton.clicked.connect(self.saveEntry)
 
+        self.actionNowy.triggered.connect(self.createNewDatabase)
         self.actionOtw_rz_2.triggered.connect(self.OpenFile)
         self.actionZapisz_2.triggered.connect(self.saveDataBase)
         self.actionZamknij.triggered.connect(self.closeDataBase)
@@ -211,18 +212,7 @@ class Ui_MainWindow(object):
             QtGui.QGuiApplication.clipboard().setText('')  
 ##############################################################################################
 
-######################################### Button functions
-    def saveDataBase(self):
-        if self.DataBase == None: return
-        if self.Encryptor == None: return
-
-        targetFile = self.SaveFileDialog()
-        if targetFile == False: return
-
-        file = open(targetFile,'w')
-        file.write(self.Encryptor.Encrypt(self.DataBase.GetRawDBData()))
-        
-        self.DisplayMsg("Baza danych zapisana pomyślnie",'Sukces')
+######################################### Button functions (only in memory)
 
     def closeDataBase(self):
         self.Encryptor = None
@@ -298,6 +288,26 @@ class Ui_MainWindow(object):
         
 ######################################### File functions
 
+    def createNewDatabase(self):
+
+        password = self.GetPasswordDialog()
+        if password == False: return
+
+        targetFile = self.SaveFileDialog()
+        if targetFile == False: return
+
+        self.Encryptor = SimpleEncryptor(password)
+        self.DataBase = SimpleDB("nameᅧNowy wpisᅥloginᅧᅥpasswordᅧᅥurlᅧᅤ")
+
+        file = open(targetFile,'w')
+        file.write(self.Encryptor.Encrypt(self.DataBase.GetRawDBData()))
+        file.close()
+
+        self.DisplayMsg("Baza danych zapisana pomyślnie",'Sukces')
+
+        self.DisplayDatabaseList()
+        self.DisplayDatabaseEntry()
+
     def OpenFile(self): #try to open database file
         
         filepath = self.GetFileDialog()
@@ -310,6 +320,7 @@ class Ui_MainWindow(object):
         file = open(filepath,'r')
         self.Encryptor = SimpleEncryptor(password)
         self.DataBase = SimpleDB(self.Encryptor.Decrypt(file.readline()))
+        file.close()
 
         if not self.DataBase.isGood:
 
@@ -321,6 +332,21 @@ class Ui_MainWindow(object):
 
         self.DisplayDatabaseList()
         self.DisplayDatabaseEntry()
+
+    def saveDataBase(self):
+
+        if self.DataBase == None: return
+        if self.Encryptor == None: return
+
+        targetFile = self.SaveFileDialog()
+        if targetFile == False: return
+
+        file = open(targetFile,'w')
+        file.write(self.Encryptor.Encrypt(self.DataBase.GetRawDBData()))
+        file.close()
+
+        self.DisplayMsg("Baza danych zapisana pomyślnie",'Sukces')
+
 ######################################### Display functions
 
     def DisplayDatabaseList(self): 
