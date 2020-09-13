@@ -178,6 +178,8 @@ class Ui_MainWindow(object):
         self.LoginCopyButton.clicked.connect(self.copyLogin)
         self.PasswordCopyButton.clicked.connect(self.copyPassword)
         self.OpenUrlButton.clicked.connect(self.openUrl)
+        self.SaveEntryButton.clicked.connect(self.saveEntry)
+
         self.actionOtw_rz_2.triggered.connect(self.OpenFile)
         self.comboBox.currentTextChanged.connect(self.DisplayDatabaseEntry)
 
@@ -206,6 +208,31 @@ class Ui_MainWindow(object):
 
     def openUrl(self):
         webbrowser.open(self.UrlBox.text())
+
+    def saveEntry(self):
+
+        if self.DataBase == None: return
+
+
+
+        index = self.comboBox.currentIndex()
+        name = self.NameBox.text()
+
+        if name == "": 
+            self.DataBase.RemoveEntry(index)
+            self.DisplayDatabaseList()
+            return
+
+        login = self.LoginBox.text()
+        passw = self.PasswordBox.text()
+        url = self.UrlBox.text()
+
+        self.DataBase.EditEntry(index,'name',name)
+        self.DataBase.EditEntry(index,'login',login)
+        self.DataBase.EditEntry(index,'password',passw)
+        self.DataBase.EditEntry(index,'url',url)
+
+        self.DisplayMsg('Zmieniono wpis',' ')
 
 ######################################### File functions
 
@@ -237,6 +264,8 @@ class Ui_MainWindow(object):
 
     def DisplayDatabaseList(self):
         if not self.DataBase.isGood: return
+
+        self.comboBox.clear()
 
         for x in self.DataBase.entries:
             self.comboBox.addItem(x.GetParmValue('name'))
