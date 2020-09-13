@@ -183,6 +183,7 @@ class Ui_MainWindow(object):
         self.SaveEntryButton.clicked.connect(self.saveEntry)
 
         self.actionOtw_rz_2.triggered.connect(self.OpenFile)
+        self.actionZapisz_2.triggered.connect(self.saveDataBase)
         self.actionZamknij.triggered.connect(self.closeDataBase)
 
         self.actionDodaj_wpis.triggered.connect(self.addEntry)
@@ -211,6 +212,18 @@ class Ui_MainWindow(object):
 ##############################################################################################
 
 ######################################### Button functions
+    def saveDataBase(self):
+        if self.DataBase == None: return
+        if self.Encryptor == None: return
+
+        targetFile = self.SaveFileDialog()
+        if targetFile == False: return
+
+        file = open(targetFile,'w')
+        file.write(self.Encryptor.Encrypt(self.DataBase.GetRawDBData()))
+        
+        self.DisplayMsg("Baza danych zapisana pomyślnie",'Sukces')
+
     def closeDataBase(self):
         self.Encryptor = None
         self.DataBase = None
@@ -279,6 +292,10 @@ class Ui_MainWindow(object):
 
         self.DisplayMsg('Zmieniono wpis',' ')
 
+        self.DisplayDatabaseList()
+        self.DisplayDatabaseEntry()
+        self.EntryListBox.setCurrentIndex(index)
+        
 ######################################### File functions
 
     def OpenFile(self): #try to open database file
@@ -336,13 +353,16 @@ class Ui_MainWindow(object):
 
     def GetFileDialog(self): #return file path or False
 
-        dlg = QtWidgets.QFileDialog()
-        dlg.setFileMode(QtWidgets.QFileDialog.AnyFile)
-        
-        if dlg.exec_():
-            return dlg.selectedFiles()[0]
+        filepath = QtWidgets.QFileDialog.getOpenFileName()
+        if filepath[0] != '': return filepath[0]
         else: return False
 
+    def SaveFileDialog(self):
+
+        filepath = QtWidgets.QFileDialog.getSaveFileName()
+        if filepath[0] != '': return filepath[0]
+        else: return False
+        
     def GetPasswordDialog(self): #return password or False
 
         text, ok = QtWidgets.QInputDialog.getText(None, " ", "Hasło:", QtWidgets.QLineEdit.Password)
