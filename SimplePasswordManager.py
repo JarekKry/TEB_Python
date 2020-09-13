@@ -393,6 +393,8 @@ class Ui_MainWindow(object):
 
         text, ok = QtWidgets.QInputDialog.getText(None, " ", "Hasło:", QtWidgets.QLineEdit.Password)
 
+        if str(text) == '': return False
+
         if ok: return str(text)
         else: return False
 
