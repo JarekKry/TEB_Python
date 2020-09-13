@@ -172,19 +172,10 @@ class Ui_MainWindow(object):
 
 ############################### Begining of non generated code ###############################
      
-##############################################################################################
-        self.clearClipboardThread = QtCore.QTimer()
-        self.clearClipboardThread.setInterval(1000)
-        self.clearClipboardThread.timeout.connect(self.reccuring_clearClipboardJob)
-        self.clearClipboardThread.start()
-############# this create background job ( i spent 2 hours figuring out how to make this ;-; )
-
         self.DataBase = None
         self.Encryptor = None
 
 #########################################
-        self.clipboardTimeLeft = 0
-        self.clipboardNeedToClear = False
 
         self.LoginCopyButton.clicked.connect(self.copyLogin)
         self.PasswordCopyButton.clicked.connect(self.copyPassword)
@@ -192,11 +183,21 @@ class Ui_MainWindow(object):
         self.SaveEntryButton.clicked.connect(self.saveEntry)
 
         self.actionOtw_rz_2.triggered.connect(self.OpenFile)
+        self.actionZamknij.triggered.connect(self.closeDataBase)
 
         self.actionDodaj_wpis.triggered.connect(self.addEntry)
-
+        self.actionZmie_has_o.triggered.connect(self.changeMasterPassword)
 
         self.EntryListBox.currentTextChanged.connect(self.DisplayDatabaseEntry)
+
+############# this create background job ( i spent 2 hours figuring out how to make this ;-; )
+        self.clearClipboardThread = QtCore.QTimer()
+        self.clearClipboardThread.setInterval(1000)
+        self.clearClipboardThread.timeout.connect(self.reccuring_clearClipboardJob)
+        self.clearClipboardThread.start()
+
+        self.clipboardTimeLeft = 0
+        self.clipboardNeedToClear = False
 
     def reccuring_clearClipboardJob(self):
 
@@ -207,11 +208,27 @@ class Ui_MainWindow(object):
         if self.clipboardTimeLeft == 0 and self.clipboardNeedToClear: 
             self.clipboardNeedToClear = False
             QtGui.QGuiApplication.clipboard().setText('')  
+##############################################################################################
 
 ######################################### Button functions
+    def closeDataBase(self):
+        self.Encryptor = None
+        self.DataBase = None
+
+        self.DisplayDatabaseList()
+        self.DisplayDatabaseEntry()
+
+    def changeMasterPassword(self):
+        if self.DataBase == None: return
+        
+        password = self.GetPasswordDialog()
+        if password == False: return
+
+        self.Encryptor = SimpleEncryptor(password)
+        self.DisplayMsg("zapisz bazę danych by zatwierdzić zmiany",'Hasło zmienione')
     
     def addEntry(self):
-        print('test')
+
         if self.DataBase == None: return
         self.DataBase.AddEntry("nameᅧNowy wpisᅥloginᅧᅥpasswordᅧᅥurlᅧ")
         self.DisplayDatabaseList()
@@ -241,7 +258,14 @@ class Ui_MainWindow(object):
 
         if name == "": 
             self.DataBase.RemoveEntry(index)
+
+            if len(self.DataBase.entries) == 0: 
+                
+                self.addEntry()
+
             self.DisplayDatabaseList()
+            self.DisplayDatabaseEntry()
+           
             return
 
         login = self.LoginBox.text()
@@ -276,17 +300,16 @@ class Ui_MainWindow(object):
             self.DataBase = None
             self.Encryptor = None
 
-        else:
+        else: self.DisplayMsg('Wczytano baze danych',' ')
 
-            self.DisplayMsg('Wczytano baze danych',' ')
-            self.DisplayDatabaseList()
-            self.DisplayDatabaseEntry()
+        self.DisplayDatabaseList()
+        self.DisplayDatabaseEntry()
 ######################################### Display functions
 
-    def DisplayDatabaseList(self):
-        if not self.DataBase.isGood: return
+    def DisplayDatabaseList(self): 
 
         self.EntryListBox.clear()
+        if self.DataBase == None: return
 
         for x in self.DataBase.entries:
             self.EntryListBox.addItem(x.GetParmValue('name'))
@@ -294,12 +317,20 @@ class Ui_MainWindow(object):
        
     def DisplayDatabaseEntry(self):
 
-        index = self.EntryListBox.currentIndex()
+        if self.DataBase == None:
 
-        self.NameBox.setText(self.DataBase.entries[index].GetParmValue('name'))
-        self.LoginBox.setText(self.DataBase.entries[index].GetParmValue('login'))
-        self.PasswordBox.setText(self.DataBase.entries[index].GetParmValue('password'))
-        self.UrlBox.setText(self.DataBase.entries[index].GetParmValue('url'))
+            self.NameBox.setText('')
+            self.LoginBox.setText('')
+            self.PasswordBox.setText('')
+            self.UrlBox.setText('')
+
+        else:
+            index = self.EntryListBox.currentIndex()
+
+            self.NameBox.setText(self.DataBase.entries[index].GetParmValue('name'))
+            self.LoginBox.setText(self.DataBase.entries[index].GetParmValue('login'))
+            self.PasswordBox.setText(self.DataBase.entries[index].GetParmValue('password'))
+            self.UrlBox.setText(self.DataBase.entries[index].GetParmValue('url'))
 
 ######################################### Dialog functions
 
