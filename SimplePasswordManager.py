@@ -7,14 +7,17 @@ import webbrowser
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(569, 241)
+        MainWindow.resize(569, 226)
         MainWindow.setTabShape(QtWidgets.QTabWidget.Rounded)
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(0, 0, 231, 31))
-        self.comboBox.setObjectName("comboBox")
+        self.EntryListBox = QtWidgets.QComboBox(self.centralwidget)
+        self.EntryListBox.setGeometry(QtCore.QRect(0, 0, 231, 31))
+        font = QtGui.QFont()
+        font.setPointSize(13)
+        self.EntryListBox.setFont(font)
+        self.EntryListBox.setObjectName("EntryListBox")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(250, 50, 51, 31))
         font = QtGui.QFont()
@@ -114,10 +117,9 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName("menubar")
         self.menuPlik = QtWidgets.QMenu(self.menubar)
         self.menuPlik.setObjectName("menuPlik")
+        self.menuBaza_danych = QtWidgets.QMenu(self.menubar)
+        self.menuBaza_danych.setObjectName("menuBaza_danych")
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
         self.actionOtw_rz = QtWidgets.QAction(MainWindow)
         self.actionOtw_rz.setObjectName("actionOtw_rz")
         self.actionZapisz = QtWidgets.QAction(MainWindow)
@@ -132,12 +134,18 @@ class Ui_MainWindow(object):
         self.actionZamknij.setObjectName("actionZamknij")
         self.actionZmie_has_o_g_wne = QtWidgets.QAction(MainWindow)
         self.actionZmie_has_o_g_wne.setObjectName("actionZmie_has_o_g_wne")
+        self.actionZmie_has_o = QtWidgets.QAction(MainWindow)
+        self.actionZmie_has_o.setObjectName("actionZmie_has_o")
+        self.actionDodaj_wpis = QtWidgets.QAction(MainWindow)
+        self.actionDodaj_wpis.setObjectName("actionDodaj_wpis")
         self.menuPlik.addAction(self.actionNowy)
         self.menuPlik.addAction(self.actionOtw_rz_2)
         self.menuPlik.addAction(self.actionZapisz_2)
-        self.menuPlik.addAction(self.actionZmie_has_o_g_wne)
         self.menuPlik.addAction(self.actionZamknij)
+        self.menuBaza_danych.addAction(self.actionDodaj_wpis)
+        self.menuBaza_danych.addAction(self.actionZmie_has_o)
         self.menubar.addAction(self.menuPlik.menuAction())
+        self.menubar.addAction(self.menuBaza_danych.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -151,6 +159,7 @@ class Ui_MainWindow(object):
         self.NameBox.setPlaceholderText(_translate("MainWindow", "Wpis zostanie usunięty po zapisaniu"))
         self.label_2.setText(_translate("MainWindow", "Nazwa"))
         self.menuPlik.setTitle(_translate("MainWindow", "Plik"))
+        self.menuBaza_danych.setTitle(_translate("MainWindow", "Baza danych"))
         self.actionOtw_rz.setText(_translate("MainWindow", "Otwórz"))
         self.actionZapisz.setText(_translate("MainWindow", "Zapisz"))
         self.actionNowy.setText(_translate("MainWindow", "Nowy"))
@@ -158,6 +167,8 @@ class Ui_MainWindow(object):
         self.actionZapisz_2.setText(_translate("MainWindow", "Zapisz"))
         self.actionZamknij.setText(_translate("MainWindow", "Zamknij"))
         self.actionZmie_has_o_g_wne.setText(_translate("MainWindow", "Zmień hasło"))
+        self.actionZmie_has_o.setText(_translate("MainWindow", "Zmień hasło"))
+        self.actionDodaj_wpis.setText(_translate("MainWindow", "Dodaj wpis"))
 
 ############################### Begining of non generated code ###############################
      
@@ -181,7 +192,11 @@ class Ui_MainWindow(object):
         self.SaveEntryButton.clicked.connect(self.saveEntry)
 
         self.actionOtw_rz_2.triggered.connect(self.OpenFile)
-        self.comboBox.currentTextChanged.connect(self.DisplayDatabaseEntry)
+
+        self.actionDodaj_wpis.triggered.connect(self.addEntry)
+
+
+        self.EntryListBox.currentTextChanged.connect(self.DisplayDatabaseEntry)
 
     def reccuring_clearClipboardJob(self):
 
@@ -194,7 +209,14 @@ class Ui_MainWindow(object):
             QtGui.QGuiApplication.clipboard().setText('')  
 
 ######################################### Button functions
-   
+    
+    def addEntry(self):
+        print('test')
+        if self.DataBase == None: return
+        self.DataBase.AddEntry("nameᅧNowy wpisᅥloginᅧᅥpasswordᅧᅥurlᅧ")
+        self.DisplayDatabaseList()
+        self.EntryListBox.setCurrentIndex(self.EntryListBox.count()-1)
+
     def copyLogin(self):
         
         self.clipboardNeedToClear = True
@@ -207,15 +229,14 @@ class Ui_MainWindow(object):
         QtGui.QGuiApplication.clipboard().setText(self.PasswordBox.text()) 
 
     def openUrl(self):
-        webbrowser.open(self.UrlBox.text())
+        if self.UrlBox.text()!='': 
+            webbrowser.open(self.UrlBox.text())
 
     def saveEntry(self):
 
         if self.DataBase == None: return
 
-
-
-        index = self.comboBox.currentIndex()
+        index = self.EntryListBox.currentIndex()
         name = self.NameBox.text()
 
         if name == "": 
@@ -265,15 +286,15 @@ class Ui_MainWindow(object):
     def DisplayDatabaseList(self):
         if not self.DataBase.isGood: return
 
-        self.comboBox.clear()
+        self.EntryListBox.clear()
 
         for x in self.DataBase.entries:
-            self.comboBox.addItem(x.GetParmValue('name'))
+            self.EntryListBox.addItem(x.GetParmValue('name'))
 
        
     def DisplayDatabaseEntry(self):
 
-        index = self.comboBox.currentIndex()
+        index = self.EntryListBox.currentIndex()
 
         self.NameBox.setText(self.DataBase.entries[index].GetParmValue('name'))
         self.LoginBox.setText(self.DataBase.entries[index].GetParmValue('login'))

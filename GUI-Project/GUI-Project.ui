@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>569</width>
-    <height>241</height>
+    <height>226</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="EntryListBox">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -28,6 +28,11 @@
       <width>231</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -320,12 +325,18 @@
     <addaction name="actionNowy"/>
     <addaction name="actionOtw_rz_2"/>
     <addaction name="actionZapisz_2"/>
-    <addaction name="actionZmie_has_o_g_wne"/>
     <addaction name="actionZamknij"/>
    </widget>
+   <widget class="QMenu" name="menuBaza_danych">
+    <property name="title">
+     <string>Baza danych</string>
+    </property>
+    <addaction name="actionDodaj_wpis"/>
+    <addaction name="actionZmie_has_o"/>
+   </widget>
    <addaction name="menuPlik"/>
+   <addaction name="menuBaza_danych"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOtw_rz">
    <property name="text">
     <string>Otwórz</string>
@@ -359,6 +370,16 @@
   <action name="actionZmie_has_o_g_wne">
    <property name="text">
     <string>Zmień hasło</string>
+   </property>
+  </action>
+  <action name="actionZmie_has_o">
+   <property name="text">
+    <string>Zmień hasło</string>
+   </property>
+  </action>
+  <action name="actionDodaj_wpis">
+   <property name="text">
+    <string>Dodaj wpis</string>
    </property>
   </action>
  </widget>
