@@ -39,3 +39,7 @@ Dane w czystym formacie (**imieᅧJanᅥnazwiskoᅧKowalskiᅤimieᅧPiotrᅥnaz
 ---
 
 Głównym ograniczeniem **SimpleDB** jest brak możliwości użycia jako wartości opisanych na początku 3 znaków unicode (**ᅤ**,**ᅥ**,**ᅧ**)
+
+# SimpleDB - UML klas
+
+![UML](/Dokumentacja/UML/SimpleDB.svg)

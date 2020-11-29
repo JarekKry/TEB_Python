@@ -1,0 +1,11 @@
+[SimpleEncryptor
+|+ __init__(self,Key): metoda inicjacyjna generująca klucze i ich sumę
+|+ Key: zmienna przechowująca klucz wygenerowany za pomocą pbkdf2_hmac()
+|+ rKey: zmienna przechowująca odwrócony klucz wygenerowany za pomocą pbkdf2_hmac()
+|+ KeySum: zmienna przechowująca sumę klucza
+|+ Encrypt(self,text): metoda zawracająca zaszyfrowany tekst
+|+ Decrypt(self,encryptedText): metoda zwracająca odszyfrowany tekst lub false jeśli podczas odszyfrowywania wystąpił błąd
+]
+
+
+https://www.nomnoml.com/

@@ -1,0 +1,25 @@
+<svg version="1.1" baseProfile="full" width="920" height="243" viewbox="0 0 920 243" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="font:normal  12pt Helvetica, Helvetica, sans-serif;;stroke-linejoin:round;stroke-linecap:round">
+  <desc >[SimpleEncryptor
+|+ __init__(self,Key): metoda inicjacyjna generująca klucze i ich sumę
+|+ Key: zmienna przechowująca klucz wygenerowany za pomocą pbkdf2_hmac()
+|+ rKey: zmienna przechowująca odwrócony klucz wygenerowany za pomocą pbkdf2_hmac()
+|+ KeySum: zmienna przechowująca sumę klucza
+|+ Encrypt(self,text): metoda zawracająca zaszyfrowany tekst
+|+ Decrypt(self,encryptedText): metoda zwracająca odszyfrowany tekst lub false jeśli podczas odszyfrowywania wystąpił błąd
+]</desc>
+  <rect x="0" y="0" height="243" width="920" style="stroke:none; fill:transparent;"></rect>
+  <rect x="13.5" y="13.5" height="217" width="894" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></rect>
+  <path d="M13.5 44.5 L907.5 44.5" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 75.5 L907.5 75.5" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 106.5 L907.5 106.5" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 137.5 L907.5 137.5" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 168.5 L907.5 168.5" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 199.5 L907.5 199.5" data-name="SimpleEncryptor" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <text x="460.5" y="35" style="fill: #33322E;font:bold  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="SimpleEncryptor">SimpleEncryptor</text>
+  <text x="21.5" y="66" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleEncryptor">+ __init__(self,Key): metoda inicjacyjna generująca klucze i ich sumę</text>
+  <text x="21.5" y="97" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleEncryptor">+ Key: zmienna przechowująca klucz wygenerowany za pomocą pbkdf2_hmac()</text>
+  <text x="21.5" y="128" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleEncryptor">+ rKey: zmienna przechowująca odwrócony klucz wygenerowany za pomocą pbkdf2_hmac()</text>
+  <text x="21.5" y="159" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleEncryptor">+ KeySum: zmienna przechowująca sumę klucza</text>
+  <text x="21.5" y="190" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleEncryptor">+ Encrypt(self,text): metoda zawracająca zaszyfrowany tekst</text>
+  <text x="21.5" y="221" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleEncryptor">+ Decrypt(self,encryptedText): metoda zwracająca odszyfrowany tekst lub false jeśli podczas odszyfrowywania wystąpił błąd</text>
+</svg>

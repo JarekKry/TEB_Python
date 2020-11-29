@@ -1,0 +1,21 @@
+[SimpleDB
+|+ __init__(self,DB_Data): metoda inicjująca bazę danych
+|+ self.isGood: zmienna definiująca czy baza została wczytana poprawnie
+|+ self.entries: tablica przechowująca wpisy bazy danych
+|+ AddEntry(self,entryString): metoda dodająca wpis do wczytanej bazy danych
+|+ EditEntry(self,index,valueName,value): metoda edytująca istniejący wpis bazy danych
+|+ RemoveEntry(self,index): metoda usuwająca wpis z bazy danych o podanym indeksie
+|+ GetRawDBData(self): metoda pozyskująca bazę danych w formacie tekstowym.
+|Entry
+|+ __init__(self,entryString): metoda inicjująca wpis 
+|+ self.isGood: zmienna definiująca czy wpis został utworzony poprawnie
+|+ self.parms\[\]: tablica zawierająca parametry bazy danych
+|+ _GetParm(self,Name): metoda wewnętrzna zwracająca parametr o podanej nazwie
+|+ GetParmValue(self,Name): metoda zwracająca wartość parametru o podanej nazwie
+|+ SetParmValue(self,Name,Value): metoda edytująca wartość parametru o podanej nazwie, lub tworząca nowy jeśli ten nie istnieje
+|Parameter
+|+ __init__(self,Name,Value): metoda inicjacyjna tworząca parametr o podanej nazwie i wartosci
+]
+
+
+https://www.nomnoml.com/

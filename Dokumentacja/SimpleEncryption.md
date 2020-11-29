@@ -34,3 +34,7 @@
 
 
 **Output** += ( **SplitedText[x]** + ( **Key[x]** * **rKey[x]** ) ) - **KeySum** - **SplitedTextLen** - **Key[x]**
+
+# SimpleEncryption - UML klas
+
+![UML](/Dokumentacja/UML/SimpleEncryptor.svg)

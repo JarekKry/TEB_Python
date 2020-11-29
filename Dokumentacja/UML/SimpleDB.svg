@@ -1,0 +1,55 @@
+<svg version="1.1" baseProfile="full" width="965" height="553" viewbox="0 0 965 553" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="font:normal  12pt Helvetica, Helvetica, sans-serif;;stroke-linejoin:round;stroke-linecap:round">
+  <desc >[SimpleDB
+|+ __init__(self,DB_Data): metoda inicjująca bazę danych
+|+ self.isGood: zmienna definiująca czy baza została wczytana poprawnie
+|+ self.entries: tablica przechowująca wpisy bazy danych
+|+ AddEntry(self,entryString): metoda dodająca wpis do wczytanej bazy danych
+|+ EditEntry(self,index,valueName,value): metoda edytująca istniejący wpis bazy danych
+|+ RemoveEntry(self,index): metoda usuwająca wpis z bazy danych o podanym indeksie
+|+ GetRawDBData(self): metoda pozyskująca bazę danych w formacie tekstowym.
+|Entry
+|+ __init__(self,entryString): metoda inicjująca wpis 
+|+ self.isGood: zmienna definiująca czy wpis został utworzony poprawnie
+|+ self.parms\[\]: tablica zawierająca parametry bazy danych
+|+ _GetParm(self,Name): metoda wewnętrzna zwracająca parametr o podanej nazwie
+|+ GetParmValue(self,Name): metoda zwracająca wartość parametru o podanej nazwie
+|+ SetParmValue(self,Name,Value): metoda edytująca wartość parametru o podanej nazwie, lub tworząca nowy jeśli ten nie istnieje
+|Parameter
+|+ __init__(self,Name,Value): metoda inicjacyjna tworząca parametr o podanej nazwie i wartosci
+]</desc>
+  <rect x="0" y="0" height="553" width="965" style="stroke:none; fill:transparent;"></rect>
+  <rect x="13.5" y="13.5" height="527" width="939" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></rect>
+  <path d="M13.5 44.5 L952.5 44.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 75.5 L952.5 75.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 106.5 L952.5 106.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 137.5 L952.5 137.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 168.5 L952.5 168.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 199.5 L952.5 199.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 230.5 L952.5 230.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 261.5 L952.5 261.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 292.5 L952.5 292.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 323.5 L952.5 323.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 354.5 L952.5 354.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 385.5 L952.5 385.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 416.5 L952.5 416.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 447.5 L952.5 447.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 478.5 L952.5 478.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M13.5 509.5 L952.5 509.5" data-name="SimpleDB" style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <text x="483" y="35" style="fill: #33322E;font:bold  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="SimpleDB">SimpleDB</text>
+  <text x="21.5" y="66" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ __init__(self,DB_Data): metoda inicjująca bazę danych</text>
+  <text x="21.5" y="97" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ self.isGood: zmienna definiująca czy baza została wczytana poprawnie</text>
+  <text x="21.5" y="128" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ self.entries: tablica przechowująca wpisy bazy danych</text>
+  <text x="21.5" y="159" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ AddEntry(self,entryString): metoda dodająca wpis do wczytanej bazy danych</text>
+  <text x="21.5" y="190" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ EditEntry(self,index,valueName,value): metoda edytująca istniejący wpis bazy danych</text>
+  <text x="21.5" y="221" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ RemoveEntry(self,index): metoda usuwająca wpis z bazy danych o podanym indeksie</text>
+  <text x="21.5" y="252" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ GetRawDBData(self): metoda pozyskująca bazę danych w formacie tekstowym.</text>
+  <text x="21.5" y="283" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">Entry</text>
+  <text x="21.5" y="314" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ __init__(self,entryString): metoda inicjująca wpis</text>
+  <text x="21.5" y="345" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ self.isGood: zmienna definiująca czy wpis został utworzony poprawnie</text>
+  <text x="21.5" y="376" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ self.parms[]: tablica zawierająca parametry bazy danych</text>
+  <text x="21.5" y="407" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ _GetParm(self,Name): metoda wewnętrzna zwracająca parametr o podanej nazwie</text>
+  <text x="21.5" y="438" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ GetParmValue(self,Name): metoda zwracająca wartość parametru o podanej nazwie</text>
+  <text x="21.5" y="469" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ SetParmValue(self,Name,Value): metoda edytująca wartość parametru o podanej nazwie, lub tworząca nowy jeśli ten nie istnieje</text>
+  <text x="21.5" y="500" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">Parameter</text>
+  <text x="21.5" y="531" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;" data-name="SimpleDB">+ __init__(self,Name,Value): metoda inicjacyjna tworząca parametr o podanej nazwie i wartosci</text>
+</svg>
